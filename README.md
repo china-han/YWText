@@ -7,5 +7,3 @@
 #import "YWTextField.h"
 然后在自己需要的地方一行代码显示相要的内容
 
-YWTextField *textField = [[YWTextField alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 40) type:RockTextFieldViewTypeLoginAccount];
-
