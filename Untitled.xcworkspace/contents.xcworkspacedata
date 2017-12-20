@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:YWTextDemo/YWTextDemo.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:YWText"
+      name = "YWText">
+      <Group
+         location = "group:MBProgressHUD"
+         name = "MBProgressHUD">
+         <FileRef
+            location = "group:MBProgressHUD.h">
+         </FileRef>
+         <FileRef
+            location = "group:MBProgressHUD.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:NSString+YWText"
+         name = "NSString+YWText">
+         <FileRef
+            location = "group:NSString+YWText.h">
+         </FileRef>
+         <FileRef
+            location = "group:NSString+YWText.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:UIView+ext"
+         name = "UIView+ext">
+         <FileRef
+            location = "group:UIView+ext.h">
+         </FileRef>
+         <FileRef
+            location = "group:UIView+ext.m">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:YWTextField.h">
+      </FileRef>
+      <FileRef
+         location = "group:YWTextField.m">
+      </FileRef>
+   </Group>
+</Workspace>
