@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger,RockTextFieldViewType) {
     RockTextFieldViewTypeRegisterPhoneNumber,  //手机号
     RockTextFieldViewTypeRegisterVerifyCode,   //验证码
     RockTextFieldViewTypeRegisterPassword,     //密码
+    RockTextFieldViewTypeDefault,              //默认，通过title设置，什么都不校验
 };
 
 typedef void(^BeginEditingCompletion)(UITextField *textField);
@@ -81,5 +82,10 @@ typedef void(^TextChangeCompletion)();
  *根据类别创建
  */
 + (instancetype)getWithType:(RockTextFieldViewType)type;
+
+/**
+ *根据名称创建，如果根据名称创建，将不再监听校验
+ */
++ (instancetype)getWihtTitleText:(NSString *)title placeholderTitle:(NSString *)placeholder;
 
 @end

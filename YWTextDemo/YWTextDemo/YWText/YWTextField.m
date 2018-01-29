@@ -78,6 +78,57 @@
     return textField;
 }
 
++ (instancetype)getWihtTitleText:(NSString *)title placeholderTitle:(NSString *)placeholder{
+    YWTextField *textField = [[self alloc]init];
+    textField.type = RockTextFieldViewTypeDefault;
+    textField.isCheckContent = YES;
+    [textField extracted:title placeholder:placeholder];
+    return textField;
+}
+
+- (void)extracted:(NSString *)mainTitle placeholder:(NSString *)placeholder {
+    CGSize titleSize = [mainTitle zySizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.height) lineBreakMode:1];
+    self.titleLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.1, 0, titleSize.width, self.height)];
+    self.titleLable.font = [UIFont systemFontOfSize:15];
+    self.titleLable.textAlignment = NSTextAlignmentLeft;
+    self.titleLable.textColor = COMMON_DEFAULT_COLOR;
+    self.titleLable.text = mainTitle;
+    
+    
+    if (self.type == RockTextFieldViewTypeRegisterVerifyCode) {
+        self.mainTextFiled = [[UITextField alloc]initWithFrame:CGRectMake(self.titleLable.mj_maxX + GBFix375(30), 0, self.width-self.titleLable.width - GBFix375(160), self.height)];
+    }else{
+        self.mainTextFiled = [[UITextField alloc]initWithFrame:CGRectMake(self.titleLable.mj_maxX + GBFix375(20), 0, self.width-self.titleLable.width - GBFix375(80), self.height)];
+    }
+    
+    if (self.type == RockTextFieldViewTypeNewPassword ||
+        self.type ==RockTextFieldViewTypeOriginalPassword ||
+        self.type ==RockTextFieldViewTypeLoginPassword ||
+        self.type ==RockTextFieldViewTypeRegisterPassword ||
+        self.type ==RockTextFieldViewTypeConfirmPassword) {
+        self.mainTextFiled.keyboardType =UIKeyboardTypeASCIICapable;
+        self.mainTextFiled.secureTextEntry = YES;
+        self.mainTextFiled.delegate = self;
+    }else if (self.type == RockTextFieldViewTypeEditEmail){
+        self.mainTextFiled.keyboardType = UIKeyboardTypeASCIICapable;
+        self.mainTextFiled.secureTextEntry = NO;
+    }else{
+        self.mainTextFiled.keyboardType = UIKeyboardTypeNumberPad;
+        self.mainTextFiled.secureTextEntry = NO;
+        self.mainTextFiled.delegate = self;
+    }
+    self.mainTextFiled.borderStyle = UITextBorderStyleNone;
+    self.mainTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.mainTextFiled.font = [UIFont systemFontOfSize:15];
+    self.mainTextFiled.textAlignment = NSTextAlignmentLeft;
+    self.mainTextFiled.textColor = COMMON_DEFAULT_COLOR;
+    self.mainTextFiled.placeholder = placeholder;
+    
+    [self addSubview:self.lineView];
+    [self addSubview:self.titleLable];
+    [self addSubview:self.mainTextFiled];
+}
+
 - (void)setMianView{
     self.backgroundColor = [UIColor whiteColor];
     NSString *mainTitle = @"";
@@ -140,46 +191,7 @@
         
     }
             
-        CGSize titleSize = [mainTitle zySizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(CGFLOAT_MAX, self.height) lineBreakMode:1];
-            self.titleLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*0.1, 0, titleSize.width, self.height)];
-            self.titleLable.font = [UIFont systemFontOfSize:15];
-            self.titleLable.textAlignment = NSTextAlignmentLeft;
-            self.titleLable.textColor = COMMON_DEFAULT_COLOR;
-            self.titleLable.text = mainTitle;
-    
-            
-            if (self.type == RockTextFieldViewTypeRegisterVerifyCode) {
-                self.mainTextFiled = [[UITextField alloc]initWithFrame:CGRectMake(self.titleLable.mj_maxX + GBFix375(30), 0, self.width-self.titleLable.width - GBFix375(160), self.height)];
-            }else{
-                self.mainTextFiled = [[UITextField alloc]initWithFrame:CGRectMake(self.titleLable.mj_maxX + GBFix375(20), 0, self.width-self.titleLable.width - GBFix375(80), self.height)];
-            }
-            
-        if (self.type == RockTextFieldViewTypeNewPassword ||
-            self.type ==RockTextFieldViewTypeOriginalPassword ||
-            self.type ==RockTextFieldViewTypeLoginPassword ||
-            self.type ==RockTextFieldViewTypeRegisterPassword ||
-            self.type ==RockTextFieldViewTypeConfirmPassword) {
-            self.mainTextFiled.keyboardType =UIKeyboardTypeASCIICapable;
-            self.mainTextFiled.secureTextEntry = YES;
-            self.mainTextFiled.delegate = self;
-        }else if (self.type == RockTextFieldViewTypeEditEmail){
-            self.mainTextFiled.keyboardType = UIKeyboardTypeASCIICapable;
-            self.mainTextFiled.secureTextEntry = NO;
-        }else{
-            self.mainTextFiled.keyboardType = UIKeyboardTypeNumberPad;
-            self.mainTextFiled.secureTextEntry = NO;
-            self.mainTextFiled.delegate = self;
-        }
-            self.mainTextFiled.borderStyle = UITextBorderStyleNone;
-            self.mainTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
-            self.mainTextFiled.font = [UIFont systemFontOfSize:15];
-            self.mainTextFiled.textAlignment = NSTextAlignmentLeft;
-            self.mainTextFiled.textColor = COMMON_DEFAULT_COLOR;
-            self.mainTextFiled.placeholder = placeholder;
-    
-            [self addSubview:self.lineView];
-            [self addSubview:self.titleLable];
-            [self addSubview:self.mainTextFiled];
+    [self extracted:mainTitle placeholder:placeholder];
     
     
 }
