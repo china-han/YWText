@@ -86,6 +86,6 @@ typedef void(^TextChangeCompletion)();
 /**
  *根据名称创建，如果根据名称创建，将不再监听校验
  */
-+ (instancetype)getWihtTitleText:(NSString *)title placeholderTitle:(NSString *)placeholder;
++ (instancetype)getWihtTitleText:(NSString *)title placeholderTitle:(NSString *)placeholder withFrame:(CGRect)frame;
 
 @end

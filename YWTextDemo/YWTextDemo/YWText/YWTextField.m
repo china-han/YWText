@@ -78,8 +78,9 @@
     return textField;
 }
 
-+ (instancetype)getWihtTitleText:(NSString *)title placeholderTitle:(NSString *)placeholder{
++ (instancetype)getWihtTitleText:(NSString *)title placeholderTitle:(NSString *)placeholder withFrame:(CGRect)frame{
     YWTextField *textField = [[self alloc]init];
+    textField.frame = frame;
     textField.type = RockTextFieldViewTypeDefault;
     textField.isCheckContent = YES;
     [textField extracted:title placeholder:placeholder];
